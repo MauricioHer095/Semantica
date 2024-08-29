@@ -1,0 +1,15 @@
+c:\Users\Mauricio\OneDrive\Documentos\Proyectos\Semantica\bin\Debug\net8.0\semantica.exe
+c:\Users\Mauricio\OneDrive\Documentos\Proyectos\Semantica\bin\Debug\net8.0\semantica.deps.json
+c:\Users\Mauricio\OneDrive\Documentos\Proyectos\Semantica\bin\Debug\net8.0\semantica.runtimeconfig.json
+c:\Users\Mauricio\OneDrive\Documentos\Proyectos\Semantica\bin\Debug\net8.0\semantica.dll
+c:\Users\Mauricio\OneDrive\Documentos\Proyectos\Semantica\bin\Debug\net8.0\semantica.pdb
+c:\Users\Mauricio\OneDrive\Documentos\Proyectos\Semantica\obj\Debug\net8.0\semantica.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\Mauricio\OneDrive\Documentos\Proyectos\Semantica\obj\Debug\net8.0\semantica.AssemblyInfoInputs.cache
+c:\Users\Mauricio\OneDrive\Documentos\Proyectos\Semantica\obj\Debug\net8.0\semantica.AssemblyInfo.cs
+c:\Users\Mauricio\OneDrive\Documentos\Proyectos\Semantica\obj\Debug\net8.0\semantica.csproj.CoreCompileInputs.cache
+c:\Users\Mauricio\OneDrive\Documentos\Proyectos\Semantica\obj\Debug\net8.0\semantica.sourcelink.json
+c:\Users\Mauricio\OneDrive\Documentos\Proyectos\Semantica\obj\Debug\net8.0\semantica.dll
+c:\Users\Mauricio\OneDrive\Documentos\Proyectos\Semantica\obj\Debug\net8.0\refint\semantica.dll
+c:\Users\Mauricio\OneDrive\Documentos\Proyectos\Semantica\obj\Debug\net8.0\semantica.pdb
+c:\Users\Mauricio\OneDrive\Documentos\Proyectos\Semantica\obj\Debug\net8.0\semantica.genruntimeconfig.cache
+c:\Users\Mauricio\OneDrive\Documentos\Proyectos\Semantica\obj\Debug\net8.0\ref\semantica.dll

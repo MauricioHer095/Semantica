@@ -37,10 +37,6 @@ namespace Semantica
             {
                 Librerias();
             }
-            if (getClasificacion() == Tipos.TipoDato)
-            {
-                Variables();
-            }
             Main();
 
             //:D
@@ -120,9 +116,7 @@ namespace Semantica
         {
             if (getContenido() == "Console")
             {
-
                 Console();
-
             }
             else if (getContenido() == "if")
             {
@@ -139,6 +133,10 @@ namespace Semantica
             else if (getContenido() == "for")
             {
                 For();
+            }
+            if (getClasificacion() == Tipos.TipoDato)
+            {
+                Variables();
             }
             else
             {
@@ -246,14 +244,14 @@ namespace Semantica
             {
                 Instruccion();
             }
-           
+
         }
 
         //Incremento -> Identificador ++ | --
         private void Incremento()
         {
             match(Tipos.Identificador);
-            if(getContenido() == "++")
+            if (getContenido() == "++")
             {
                 match("++");
             }
@@ -264,15 +262,15 @@ namespace Semantica
         }
 
         //Console -> Console.(WriteLine|Write) (cadena?); | Console.(Read | ReadLine) ();
-        private void consoles()
+        private void Console()
         {
             match("Console");
             match(".");
-            if(getContenido() == "WriteLine" || getContenido() == "Write") 
+            if (getContenido() == "WriteLine" || getContenido() == "Write")
             {
                 match(getContenido());
                 match("(");
-                if(getClasificacion() == Tipos.Cadena)
+                if (getClasificacion() == Tipos.Cadena)
                 {
                     match(Tipos.Cadena);
                 }
@@ -281,7 +279,7 @@ namespace Semantica
             }
             else
             {
-                if(getContenido() == "ReadLine") 
+                if (getContenido() == "ReadLine")
                 {
                     match("ReadLine");
                 }
@@ -291,7 +289,7 @@ namespace Semantica
                 }
                 match("(");
                 match(")");
-                
+
             }
             match(";");
         }
@@ -310,35 +308,59 @@ namespace Semantica
             PorFactor();
         }
 
+        //MasTermino -> (OperadorTermino Termino)?
+        private void MasTermino()
+        {
+            if (getClasificacion() == Tipos.OpTermino)
+            {
+                match(Tipos.OpTermino);
+                Termino();
+            }
+        }
+
         //Factor -> numero | identificador | (Expresion)
         private void Factor()
         {
-            match(Tipos.Numero | Tipos.Identificador | Tipos.Caracter | Tipos.Cadena | Tipos.True | Tipos.False);
+            if (getClasificacion() == Tipos.Numero)
+            {
+                match(Tipos.Numero);
+            }
+            else if (getClasificacion() == Tipos.Identificador)
+            {
+                match(Tipos.Identificador);
+            }
+            else
+            {
+                match("(");
+                Expresion();
+                match(")");
+            }
         }
 
         //PorFactor -> (OperadorFactor Factor)?
         private void PorFactor()
         {
-            match(Tipos.OpMultiplicativo | Tipos.OpDivision | Tipos.OpModulo);
-            Factor();
+            if (getClasificacion() == Tipos.OpFactor)
+            {
+                match(Tipos.OpFactor);
+                Factor();
+            }
         }
 
-        private void MasTermino()
+        //Main      -> static void Main(string[] args) BloqueInstrucciones
+        private void Main()
         {
-            match(Tipos.OpSuma | Tipos.OpResta);
-            Termino();
+            match("static");
+            match("void");
+            match("Main");
+            match("(");
+            match("string");
+            match("[");
+            match("]");
+            match("args");
+            match(")");
+            bloqueInstrucciones();
         }
-        
-        
-
-        Main      -> static void Main(string[] args) BloqueInstrucciones
-
-
-
-        MasTermino -> (OperadorTermino Termino)?
-        
-        
-
 
     }
 

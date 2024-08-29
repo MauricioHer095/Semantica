@@ -1,4 +1,3 @@
-123+token;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,13 +5,13 @@ using System.Threading.Tasks;
 
 static void Main(string[] args)
 {
-    char e;
+    char a,a,a,a,a,a;
     float pi;
     int rex;
 
     Console.Write("Proyecto 6");
     Console.WriteLine(" - ITQ");
-    e = Console.ReadLine();
+    Console.ReadLine();
     pi = (3 + 5) * 8 - (10 - e) / 2; // 61;
     pi++;                            // 62
     e--;                             // 3
@@ -30,10 +29,19 @@ static void Main(string[] args)
         if (2 == 2)
             Console.WriteLine("Entró al IF");
         a = 100;
+        do
+            a=0
+        while (a>10);
+        
     }
     else
     {
         a = 200;
         Console.WriteLine("Entró al ELSE");
+
+        for(int i = 0 ; 1<10 ; i++)
+        {
+            Console.WriteLine("Hola al");
+        }
     }
 }
