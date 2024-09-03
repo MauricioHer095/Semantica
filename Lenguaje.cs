@@ -6,28 +6,25 @@ using System.Threading.Tasks;
 
 
 /*
-1. Colocar la linea en los errores lexicos y sintaxicos
-2. Cambiar clase token por atributos publicos usando get y set
-3. Cambiar los contructores de la calse lexico usando parametros por default
-
+    1. Colocar la linea en los errores lexicos y sintaxicos
+    2. Cambiar clase token por atributos publicos usando get y set
+    3. Cambiar los contructores de la calse lexico usando parametros por default
+    4.
 */
 
 namespace Semantica
 {
-
     public class Lenguaje : Sintaxis
     {
-
+        private List <Variable> listaVariables;
         public Lenguaje()
         {
-
-
+            listaVariables = new List<Variable>();
         }
 
         public Lenguaje(string nombre) : base(nombre)
         {
-
-
+            listaVariables = new List<Variable>();
         }
 
         // Program -> Librerias? Variables? Main
@@ -38,7 +35,7 @@ namespace Semantica
                 Librerias();
             }
             Main();
-
+            imprimeVariables();
             //:D
         }
 
@@ -67,26 +64,43 @@ namespace Semantica
 
         //--------------------------------------------------------------------------------------------
 
+        Variable.TipoDato getTipo(string TipoDato)
+        {
+            Variable.TipoDato tipo = Variable.TipoDato.Char;
+            switch(TipoDato)
+            {
+                case("int"):tipo = Variable.TipoDato.Int; break;
+                case("float"):tipo = Variable.TipoDato.Float; break;
+            }
+            return tipo;
+        }
+
         //Variables -> tipo_dato Lista_identificadores; Variables?
         private void Variables()
         {
+            Variable.TipoDato tipo = getTipo(getContenido());
             match(Tipos.TipoDato);
-            listaIdentificadores();
+            listaIdentificadores(tipo);
             match(";");
-            if (getClasificacion() == Tipos.TipoDato)
+        }
+
+        private void imprimeVariables()
+        {
+            foreach(Variable v in listaVariables)
             {
-                Variables();
+            log.WriteLine(v.getNombre() + " (" + v.getTipo() + ") = " + v.getValor());
             }
         }
 
         //ListaIdentificadores -> identificador (,ListaIdentificadores)?
-        private void listaIdentificadores()
+        private void listaIdentificadores(Variable.TipoDato t)
         {
+            listaVariables.Add(new Variable(getContenido(),t));
             match(Tipos.Identificador);
             if (getContenido() == ",")
             {
                 match(",");
-                listaIdentificadores();
+                listaIdentificadores(t);
             }
         }
 
@@ -332,6 +346,12 @@ namespace Semantica
             else
             {
                 match("(");
+                if(getClasificacion() == Tipos.TipoDato)
+                {
+                    match(Tipos.TipoDato);
+                    match(")");
+                    match("(");
+                }
                 Expresion();
                 match(")");
             }
