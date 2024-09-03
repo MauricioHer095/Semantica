@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 /*
     1. Colocar la linea en los errores lexicos y sintaxicos
-    2. Cambiar clase token por atributos publicos usando get y set
+    --- ESTA NO --- 2. Cambiar clase token por atributos publicos usando get y set
     3. Cambiar los contructores de la calse lexico usando parametros por default
     4.
 */
@@ -17,14 +17,17 @@ namespace Semantica
     public class Lenguaje : Sintaxis
     {
         private List <Variable> listaVariables;
+        private Stack <float> S;
         public Lenguaje()
         {
-            listaVariables = new List<Variable>();
+            listaVariables = new List <Variable>();
+            S = new Stack<float>();
         }
 
         public Lenguaje(string nombre) : base(nombre)
         {
-            listaVariables = new List<Variable>();
+            listaVariables = new List <Variable>();
+            S = new Stack <float>();
         }
 
         // Program -> Librerias? Variables? Main
@@ -161,10 +164,13 @@ namespace Semantica
         // Asignacion -> Identificador = Expresion;
         private void Asignacion()
         {
+            string variable = getContenido();
             match(Tipos.Identificador);
             match("=");
             Expresion();
             match(";");
+            imprimeStack();
+            log.WriteLine(variable + " = " + S.Pop());
         }
 
         //If -> if (Condicion) bloqueInstrucciones | instruccion (else bloqueInstrucciones | instruccion)?
@@ -327,16 +333,35 @@ namespace Semantica
         {
             if (getClasificacion() == Tipos.OpTermino)
             {
+                string operador = getContenido();
                 match(Tipos.OpTermino);
                 Termino();
+                float R1 = S.Pop();
+                float R2 = S.Pop();
+                switch (operador)
+                {
+                    case "+": S.Push(R2 + R1); break;
+                    case "-": S.Push(R2 - R1); break;
+                }
+    
             }
         }
 
+        private void imprimeStack()
+        {
+            log.WriteLine("ESTO DICE QUE TIENE EL STACK JAJAJA XD LOLOLOLOLOL");
+            foreach(float e in S.Reverse())
+            {
+                log.Write(e + " ");
+            }
+            log.WriteLine();
+        }
         //Factor -> numero | identificador | (Expresion)
         private void Factor()
         {
             if (getClasificacion() == Tipos.Numero)
             {
+                S.Push(float.Parse(getContenido()));
                 match(Tipos.Numero);
             }
             else if (getClasificacion() == Tipos.Identificador)
@@ -362,8 +387,18 @@ namespace Semantica
         {
             if (getClasificacion() == Tipos.OpFactor)
             {
+                string operador = getContenido();
                 match(Tipos.OpFactor);
                 Factor();
+                float R1 = S.Pop();
+                float R2 = S.Pop();
+                switch (operador)
+                {
+                    case "*": S.Push(R2 * R1); break;
+                    case "/": S.Push(R2 / R1); break;
+                    case "%": S.Push(R2 % R1); break;
+                }
+                  
             }
         }
 

@@ -12,22 +12,6 @@ args = Identificador
 { = Inicio
 char = TipoDato
 a = Identificador
-, = Caracter
-b = Identificador
-, = Caracter
-c = Identificador
-, = Caracter
-d = Identificador
-, = Caracter
-e = Identificador
-, = Caracter
-f = Identificador
-; = FinSentencia
-float = TipoDato
-pi = Identificador
-; = FinSentencia
-int = TipoDato
-rex = Identificador
 ; = FinSentencia
 a = Identificador
 = = Asignacion
@@ -52,34 +36,9 @@ int = TipoDato
 2 = Numero
 ) = Caracter
 ; = FinSentencia
-rex = Identificador
-= = Asignacion
-123 = Numero
-; = FinSentencia
-char = TipoDato
-i = Identificador
-; = FinSentencia
-i = Identificador
-= = Asignacion
-300 = Numero
-; = FinSentencia
-i = Identificador
-= = Asignacion
-( = Caracter
-char = TipoDato
-) = Caracter
-( = Caracter
-300 = Numero
-) = Caracter
-; = FinSentencia
 } = Fin
+ESTO DICE QUE TIENE EL STACK JAJAJA XD LOLOLOLOLOL
+61 
+a = 61
 ￿ = Caracter
 a (Char) = 0
-b (Char) = 0
-c (Char) = 0
-d (Char) = 0
-e (Char) = 0
-f (Char) = 0
-pi (Float) = 0
-rex (Int) = 0
-i (Char) = 0
