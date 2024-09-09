@@ -6,6 +6,7 @@ using System.IO;
 
 namespace Semantica
 {
+    //Hola
     public class Lexico : Token, IDisposable
     {
         private StreamReader archivo;
